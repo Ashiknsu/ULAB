@@ -26,7 +26,7 @@ def show_messages(text):
     text.text_area("Messages", value=str("\n".join(messages_str)), height=400)
 
 
-BASE_PROMPT = [{"role": "Assistant", "content": "You are a helpful assistant."}]
+BASE_PROMPT = [{"role": "assistant", "content": "You are a helpful assistant."}]
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = BASE_PROMPT
