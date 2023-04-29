@@ -8,10 +8,12 @@ prompt = st.text_input("Prompt")
 
 
 st.sidebar.title("Chatbot")
-st.sidebar.button("ULAB")
-st.sidebar.button("ChatGPT")
+if st.sidebar.button("ULAB"):
+with st.spinner("Generating response..."):
+        st.session_state["messages"] += [{"role": "user", "content": "Under construction"}]
 
-if ((st.sidebar.button("ChatGPT")) and st.button("Send")):
+else
+if st.button("Send"):
     with st.spinner("Generating response..."):
         st.session_state["messages"] += [{"role": "user", "content": prompt}]
         response = openai.ChatCompletion.create(
