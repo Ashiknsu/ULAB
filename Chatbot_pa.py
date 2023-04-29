@@ -31,7 +31,7 @@ BASE_PROMPT = [{"role": "assistant", "content": "You are a helpful assistant."}]
 if "messages" not in st.session_state:
     st.session_state["messages"] = BASE_PROMPT
 
-show_messages(text)
+
 
 
 
