@@ -11,7 +11,7 @@ st.sidebar.title("Chatbot")
 if st.sidebar.button("ULAB"):
         st.session_state["messages"] += [{"role": "user", "content": "Under construction"}]
 
-elif st.button("Send"):
+if st.button("Send"):
     with st.spinner("Generating response..."):
         st.session_state["messages"] += [{"role": "user", "content": prompt}]
         response = openai.ChatCompletion.create(
