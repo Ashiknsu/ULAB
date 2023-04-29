@@ -4,7 +4,7 @@ import streamlit as st
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
 st.header("CHATBOT")
-prompt = st.text_input("Prompt", value="Enter your message here...")
+prompt = st.text_input("Prompt", "Enter your message here...")
 
 if st.button("Send"):
     with st.spinner("Generating response..."):
