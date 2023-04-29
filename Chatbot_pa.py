@@ -9,7 +9,7 @@ def show_messages(text):
     ]
     text.text_area("Messages", value=str("\n".join(messages_str)), height=400)
 prompt = st.text_input("Prompt", value="Enter your message here...")
-
+text = st.empty()
 if st.button("Send"):
     with st.spinner("Generating response..."):
         st.session_state["messages"] += [{"role": "user", "content": prompt}]
@@ -28,9 +28,9 @@ BASE_PROMPT = [{"role": "system", "content": "You are a helpful assistant."}]
 if "messages" not in st.session_state:
     st.session_state["messages"] = BASE_PROMPT
 
-st.header("STREAMLIT GPT-3 CHATBOT")
+st.header("CHATBOT for CSE Department")
 
-text = st.empty()
+
 show_messages(text)
 
 
