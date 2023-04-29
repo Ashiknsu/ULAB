@@ -15,7 +15,10 @@ def show_messages(text):
 prompt = st.text_input("Prompt", value="Enter your message here...")
 if "messages" not in st.session_state:
     st.session_state["messages"] = BASE_PROMPT
-    
+st.button("Send")
+text = st.empty() 
+show_messages(text)
+
 if st.button("Send"):
     with st.spinner("Generating response..."):
         st.session_state["messages"] += [{"role": "user", "content": prompt}]
@@ -28,7 +31,7 @@ if st.button("Send"):
         ]
         show_messages(text)
     
-text = st.empty() 
+
 
 
 
