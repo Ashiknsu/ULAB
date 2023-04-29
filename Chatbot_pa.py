@@ -3,6 +3,9 @@ import os
 import streamlit as st
 
 st.header("CHATBOT for CSE Department")
+openai.api_key = os.environ['OPENAI_API_KEY']
+BASE_PROMPT = [{"role": "system", "content": "You are a helpful assistant."}]
+
 def show_messages(text):
     messages_str = [
         f"{_['role']}: {_['content']}" for _ in st.session_state["messages"][1:]
@@ -20,11 +23,10 @@ if st.button("Send"):
         st.session_state["messages"] += [
             {"role": "system", "content": message_response}
         ]
-    text = st.empty()   
+     
     show_messages(text)
-
-openai.api_key = os.environ['OPENAI_API_KEY']
-BASE_PROMPT = [{"role": "system", "content": "You are a helpful assistant."}]
+     text = st.empty() 
+    show_messages(text)
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = BASE_PROMPT
