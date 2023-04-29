@@ -1,7 +1,10 @@
 import openai
 import os
 import streamlit as st
+openai.api_key = os.environ["OPENAI_API_KEY"]
 
+st.header("CHATBOT")
+prompt = st.text_input("Prompt", value="Enter your message here...")
 
 def show_messages(text):
     messages_str = [
@@ -9,18 +12,18 @@ def show_messages(text):
     ]
     text.text_area("Messages", value=str("\n".join(messages_str)), height=400)
 
-openai.api_key = os.environ["OPENAI_API_KEY"]
-BASE_PROMPT = [{"role": "system", "content": "You are a helpful assistant."}]
+
+BASE_PROMPT = [{"role": "CSE Department", "content": "You are a helpful assistant."}]
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = BASE_PROMPT
 
-st.header("STREAMLIT GPT-3 CHATBOT")
+
 
 text = st.empty()
 show_messages(text)
 
-prompt = st.text_input("Prompt", value="Enter your message here...")
+
 
 if st.button("Send"):
     with st.spinner("Generating response..."):
