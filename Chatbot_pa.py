@@ -11,8 +11,11 @@ def show_messages(text):
         f"{_['role']}: {_['content']}" for _ in st.session_state["messages"][1:]
     ]
     text.text_area("Messages", value=str("\n".join(messages_str)), height=400)
-prompt = st.text_input("Prompt", value="Enter your message here...")
 
+prompt = st.text_input("Prompt", value="Enter your message here...")
+if "messages" not in st.session_state:
+    st.session_state["messages"] = BASE_PROMPT
+    
 if st.button("Send"):
     with st.spinner("Generating response..."):
         st.session_state["messages"] += [{"role": "user", "content": prompt}]
@@ -23,13 +26,13 @@ if st.button("Send"):
         st.session_state["messages"] += [
             {"role": "system", "content": message_response}
         ]
-     
-    show_messages(text)
-     text = st.empty() 
+         show_messages(text)
+    
+    
+    text = st.empty() 
     show_messages(text)
 
-if "messages" not in st.session_state:
-    st.session_state["messages"] = BASE_PROMPT
+
 
 
 
