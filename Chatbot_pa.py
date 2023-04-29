@@ -29,7 +29,7 @@ if st.button("Send"):
         show_messages(text)
     
 text = st.empty() 
-show_messages(text)
+
 
 
 
