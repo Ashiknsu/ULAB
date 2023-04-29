@@ -18,10 +18,6 @@ if st.button("Send"):
         ]
         show_messages(text)
 
-if st.button("Clear"):
-    st.session_state["messages"] = BASE_PROMPT
-    show_messages(text)
-
 def show_messages(text):
     messages_str = [
         f"{_['role']}: {_['content']}" for _ in st.session_state["messages"][1:]
@@ -39,6 +35,8 @@ if "messages" not in st.session_state:
 text = st.empty()
 show_messages(text)
 
-
+if st.button("Clear"):
+    st.session_state["messages"] = BASE_PROMPT
+    show_messages(text)
 
 
