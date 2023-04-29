@@ -17,7 +17,7 @@ if st.button("Send"):
             {"role": "system", "content": message_response}
         ]
         show_messages(text)
-
+st.sidebar.title("Chatbot")
 def show_messages(text):
     messages_str = [
         f"{_['role']}: {_['content']}" for _ in st.session_state["messages"][1:]
