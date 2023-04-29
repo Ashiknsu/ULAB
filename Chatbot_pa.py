@@ -26,11 +26,10 @@ if st.button("Send"):
         st.session_state["messages"] += [
             {"role": "system", "content": message_response}
         ]
-         show_messages(text)
+        show_messages(text)
     
-    
-    text = st.empty() 
-    show_messages(text)
+text = st.empty() 
+show_messages(text)
 
 
 
