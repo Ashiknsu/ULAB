@@ -5,12 +5,6 @@ openai.api_key = os.environ["OPENAI_API_KEY"]
 
 st.header("CHATBOT")
 prompt = st.text_input("Prompt")
-
-
-st.sidebar.title("Chatbot")
-if st.sidebar.button("ULAB"):
-        st.session_state["messages"] += [{"role": "user", "content": "Under construction"}]
-
 if st.button("Send"):
     with st.spinner("Generating response..."):
         st.session_state["messages"] += [{"role": "user", "content": prompt}]
@@ -46,4 +40,6 @@ if st.button("Clear"):
     st.session_state["messages"] = BASE_PROMPT
     show_messages(text)
 
-
+st.sidebar.title("Chatbot")
+if st.sidebar.button("ULAB"):
+        st.session_state["messages"] += [{"role": "user", "content": "Under construction"}]
