@@ -9,7 +9,6 @@ prompt = st.text_input("Prompt")
 
 st.sidebar.title("Chatbot")
 if st.sidebar.button("ULAB"):
-with st.spinner("Generating response..."):
         st.session_state["messages"] += [{"role": "user", "content": "Under construction"}]
 
 else
