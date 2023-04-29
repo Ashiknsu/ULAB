@@ -11,7 +11,7 @@ st.sidebar.title("Chatbot")
 st.sidebar.button("ULAB")
 st.sidebar.button("ChatGPT")
 
-if st.sidebar.button("ChatGPT") and st.button("Send"):
+if ((st.sidebar.button("ChatGPT")) and st.button("Send")):
     with st.spinner("Generating response..."):
         st.session_state["messages"] += [{"role": "user", "content": prompt}]
         response = openai.ChatCompletion.create(
