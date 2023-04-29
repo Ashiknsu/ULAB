@@ -1,13 +1,15 @@
 import openai
 import os
 import streamlit as st
-openai.api_key = os.environ["OPENAI_API_KEY"]
 
 
+def show_messages(text):
+    messages_str = [
+        f"{_['role']}: {_['content']}" for _ in st.session_state["messages"][1:]
+    ]
+    text.text_area("Messages", value=str("\n".join(messages_str)), height=400)
+prompt = st.text_input("Prompt", value="Enter your message here...")
 
-
-st.header("CHATBOT")
-prompt = st.text_input("Prompt")
 if st.button("Send"):
     with st.spinner("Generating response..."):
         st.session_state["messages"] += [{"role": "user", "content": prompt}]
@@ -18,28 +20,24 @@ if st.button("Send"):
         st.session_state["messages"] += [
             {"role": "system", "content": message_response}
         ]
-def show_messages(text):
-    messages_str = [
-        f"{_['role']}: {_['content']}" for _ in st.session_state["messages"][1:]
-    ]
-    text.text_area("Messages", value=str("\n".join(messages_str)), height=400)
-BASE_PROMPT = [{"role": "assistant", "content": "You are a helpful assistant."}]        
-text = st.empty()
-show_messages(text)
+        show_messages(text)
 
+openai.api_key = os.environ['OPENAI_API_KEY']
+BASE_PROMPT = [{"role": "system", "content": "You are a helpful assistant."}]
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = BASE_PROMPT
 
+st.header("STREAMLIT GPT-3 CHATBOT")
 
-
+text = st.empty()
+show_messages(text)
 
 
 
 if st.button("Clear"):
     st.session_state["messages"] = BASE_PROMPT
     show_messages(text)
-
 st.sidebar.title("Chatbot")
 if st.sidebar.button("ULAB"):
         st.session_state["messages"] += [{"role": "user", "content": "Under construction"}]
